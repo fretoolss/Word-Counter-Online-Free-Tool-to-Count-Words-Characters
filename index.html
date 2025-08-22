@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Counter Online – Free Tool to Count Words & Characters</title>
+    <meta name="description" content="Free online Word Counter tool to count words, characters, sentences, and paragraphs instantly. Perfect for writers, students, SEO experts.">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Word Counter Online Tool",
+      "applicationCategory": "UtilityApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Free online tool to count words, characters, sentences, and paragraphs in your text.",
+      "operatingSystem": "All"
+    }
+    </script>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --text-color: #333;
+            --light-bg: #f9f9f9;
+            --dark-bg: #2c3e50;
+            --light-text: #ecf0f1;
+            --border-color: #ddd;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .site-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .ad-header {
+            width: 100%;
+            margin: 15px 0;
+            text-align: center;
+            min-height: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .tool-container {
+            flex: 1;
+            min-width: 300px;
+            margin-right: 20px;
+        }
+        
+        .tool-box {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+        
+        .text-input {
+            width: 100%;
+            min-height: 300px;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 16px;
+            resize: vertical;
+            margin-bottom: 15px;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-box {
+            background-color: var(--light-bg);
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #777;
+        }
+        
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #d0d0d0;
+        }
+        
+        .sidebar {
+            width: 300px;
+            min-width: 300px;
+        }
+        
+        .ad-sidebar {
+            width: 100%;
+            margin-bottom: 20px;
+            text-align: center;
+            min-height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+        
+        .ad-tool {
+            width: 100%;
+            margin: 20px 0;
+            text-align: center;
+            min-height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+        
+        footer {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-nav {
+            margin-bottom: 15px;
+        }
+        
+        .footer-nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .footer-nav ul li {
+            margin: 0 15px;
+        }
+        
+        .footer-nav ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+        }
+        
+        .copyright {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+        
+        .ad-footer {
+            width: 100%;
+            margin: 20px 0;
+            text-align: center;
+            min-height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #3a4b5c;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .tool-container {
+                margin-right: 0;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .ad-sidebar {
+                min-height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1 class="site-title">Word Counter Online Tool</h1>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="ad-header">
+            <!-- Header Ad -->
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '31b33a0d91430f126f04af7ea387af38',
+                    'format' : 'iframe',
+                    'height' : 250,
+                    'width' : 300,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//strolldownstairstelegram.com/31b33a0d91430f126f04af7ea387af38/invoke.js"></script>
+        </div>
+        
+        <div class="main-content">
+            <div class="tool-container">
+                <div class="tool-box">
+                    <h2>Paste or Type Your Text Here</h2>
+                    <textarea id="text-input" class="text-input" placeholder="Start typing or paste your text here..."></textarea>
+                    
+                    <div class="stats-container">
+                        <div class="stat-box">
+                            <div class="stat-value" id="word-count">0</div>
+                            <div class="stat-label">Words</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="char-count">0</div>
+                            <div class="stat-label">Characters</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="char-no-spaces-count">0</div>
+                            <div class="stat-label">Characters (no spaces)</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="sentence-count">0</div>
+                            <div class="stat-label">Sentences</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="paragraph-count">0</div>
+                            <div class="stat-label">Paragraphs</div>
+                        </div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button id="copy-btn" class="btn btn-primary">Copy Text</button>
+                        <button id="clear-btn" class="btn btn-secondary">Clear Text</button>
+                        <button id="download-btn" class="btn btn-primary">Download as TXT</button>
+                    </div>
+                </div>
+                
+                <div class="ad-tool">
+                    <!-- Tool Ad -->
+                    <script type='text/javascript' src='//strolldownstairstelegram.com/46/b9/8b/46b98b6efe001c09530094db33f90109.js'></script>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <div class="ad-sidebar">
+                    <!-- Sidebar Ad -->
+                    <script type="text/javascript">
+                        atOptions = {
+                            'key' : 'cb551c2c221d234cd86569de97e57731',
+                            'format' : 'iframe',
+                            'height' : 600,
+                            'width' : 160,
+                            'params' : {}
+                        };
+                    </script>
+                    <script type="text/javascript" src="//strolldownstairstelegram.com/cb551c2c221d234cd86569de97e57731/invoke.js"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="ad-footer">
+                <!-- Footer Ad -->
+                <script type='text/javascript' src='//strolldownstairstelegram.com/cf/97/59/cf9759d64bf409e8fa14775c93e5438b.js'></script>
+            </div>
+            
+            <div class="footer-content">
+                <nav class="footer-nav">
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                    </ul>
+                </nav>
+                <div class="copyright">
+                    &copy; 2023 Word Counter Online Tool. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const textInput = document.getElementById('text-input');
+            const wordCount = document.getElementById('word-count');
+            const charCount = document.getElementById('char-count');
+            const charNoSpacesCount = document.getElementById('char-no-spaces-count');
+            const sentenceCount = document.getElementById('sentence-count');
+            const paragraphCount = document.getElementById('paragraph-count');
+            const copyBtn = document.getElementById('copy-btn');
+            const clearBtn = document.getElementById('clear-btn');
+            const downloadBtn = document.getElementById('download-btn');
+            
+            // Update counts in real-time
+            textInput.addEventListener('input', updateCounts);
+            
+            // Copy text to clipboard
+            copyBtn.addEventListener('click', function() {
+                textInput.select();
+                document.execCommand('copy');
+                alert('Text copied to clipboard!');
+            });
+            
+            // Clear text
+            clearBtn.addEventListener('click', function() {
+                textInput.value = '';
+                updateCounts();
+            });
+            
+            // Download as text file
+            downloadBtn.addEventListener('click', function() {
+                const text = textInput.value;
+                if (!text) {
+                    alert('Please enter some text to download.');
+                    return;
+                }
+                
+                const blob = new Blob([text], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'word-counter-text.txt';
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(function() {
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                }, 0);
+            });
+            
+            // Function to update all counts
+            function updateCounts() {
+                const text = textInput.value;
+                
+                // Character count (with spaces)
+                charCount.textContent = text.length;
+                
+                // Character count (without spaces)
+                charNoSpacesCount.textContent = text.replace(/\s+/g, '').length;
+                
+                // Word count
+                const words = text.trim().split(/\s+/);
+                wordCount.textContent = text.trim() === '' ? 0 : words.length;
+                
+                // Sentence count
+                const sentences = text.split(/[.!?]+/).filter(s => s.length > 0);
+                sentenceCount.textContent = sentences.length;
+                
+                // Paragraph count
+                const paragraphs = text.split(/\n\s*\n/).filter(p => p.trim().length > 0);
+                paragraphCount.textContent = paragraphs.length || (text.trim() ? 1 : 0);
+            }
+        });
+    </script>
+</body>
+                              </html>
